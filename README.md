@@ -37,8 +37,11 @@
   3. Run app: `npm run android` 
 
 <br>
+
 #### GDPR compliance.
+
 To comply with GDPR, we provide following user data management methods:
+
 1. Request for user data. 
 A report with current user data will be sent to the provided email.
 ```javascript
