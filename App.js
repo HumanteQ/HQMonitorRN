@@ -1,17 +1,38 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import hqm from 'react-native-hqm';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
 
 export default function App() {
+  
+  // Initialize SDK
+  hqm.initSdk(
+    {
+      sdkKey: 'test_key',
+      isDebug: true,
+    },
+    (result) => {
+      // OK
+      console.log(result);
+    },
+    (error) => {
+      // Failure
+      console.error(error);
+    }
+  );
+
+  // Start SDK
+  hqm.start();
+  
+  // Send event
+  hqm.log('test_event', 'test_value');
+
+  // Send target segments to AppsFlyer/Firebase. 
+  hqm.trackSegments(true, hqm.HQMTrackers.AppsFlyer);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
     </View>
   );
 }
